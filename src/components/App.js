@@ -1,43 +1,21 @@
 import React, { Component } from "react";
-import Section from "./Section/Section";
-
+import Phonebook from "./Phonebook/Phonebook";
 class App extends Component {
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0
-  };
-
-  changeStats = e => {
-    const name = e.target.textContent.toLowerCase();
-    this.setState(prevState => ({
-      [name]: prevState[name] + 1
-    }));
-  };
-
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
-
-  countPositiveFeedbackPercentage = () => {
-    return +((this.state.good * 100) / this.countTotalFeedback()).toFixed(2);
+    contacts: [
+      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+      { id: "id-4", name: "Annie Copeland", number: "227-91-26" }
+    ],
+    filter: ""
   };
 
   render() {
-    const { good, neutral, bad } = this.state;
     return (
-      <>
-        <Section
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          countTotalFeedback={this.countTotalFeedback()}
-          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}
-          options={{ good, neutral, bad }}
-          onLeaveFeedback={this.changeStats}
-          title="Statistics"
-        />
-      </>
+      <div>
+        <Phonebook />
+      </div>
     );
   }
 }
