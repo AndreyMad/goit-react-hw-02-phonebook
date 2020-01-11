@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import style from "./Phonebook.module.css";
 
-const keyGen = require("uuid/v1");
-
 class Phonebook extends Component {
   state = {
     name: "",
@@ -10,28 +8,36 @@ class Phonebook extends Component {
   };
 
   handleChangeState = e => {
-    return e;
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
   };
 
   render() {
     const { name, number } = this.state;
     return (
       <form className={style.form}>
-        <label htmlFor="input_name">
+        <label htmlFor="name">
           Name
           <input
             onChange={this.handleChangeState}
             value={name}
-            key={keyGen()}
             type="input"
-            id="input_name"
+            name="name"
           />
         </label>
-        <label htmlFor="input_name">
+        <label htmlFor="number">
           Number
-          <input value={number} key={keyGen()} type="input" id="input_number" />
+          <input
+            value={number}
+            type="input"
+            name="number"
+            onChange={this.handleChangeState}
+          />
         </label>
-        <input type="submit" />
+        <input type="submit" className={style.submit_btn} value="Add contact" />
       </form>
     );
   }
