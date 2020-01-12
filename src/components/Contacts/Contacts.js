@@ -1,41 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import style from "./Contacts.module.css";
+import Contact from "./Contact";
 
-// const keyGen = require("uuid/v1");
+const Contacts = ({ contacts }) => {
+  return (
+    <div className={style.wrapper}>
+      <h2>Contacts</h2>
 
-class Contacts extends Component {
-  state = {
-    filter: ""
-  };
-
-  static propTypes = {
-    contacts: PropTypes.arrayOf(PropTypes.shape({})).isRequired
-  };
-
-  render() {
-    const { filter } = this.state;
-    const { contacts } = this.props;
-    return (
-      <div className={style.wrapper}>
-        <h2>Contacts</h2>
-        <label htmlFor="filter">
-          Filter contacts by name
-          <input type="input" name="filter" value={filter} />
-        </label>
-        <ul>
-          {contacts.map(el => {
-            return (
-              <li key={el.id} className={style.list_item}>
-                <p>{el.name}</p>
-                <p>{el.number}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
-}
-
+      <ul>
+        {contacts.map(el => {
+          return <Contact key={el.id} el={el} />;
+        })}
+      </ul>
+    </div>
+  );
+};
+Contacts.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
 export default Contacts;
