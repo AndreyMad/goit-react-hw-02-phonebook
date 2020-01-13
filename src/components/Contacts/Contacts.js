@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import style from "./Contacts.module.css";
 import Contact from "./Contact";
 
-const Contacts = ({ contacts }) => {
+const Contacts = ({ contacts, deleteFunc }) => {
   return (
     <div className={style.wrapper}>
       <h2>Contacts</h2>
 
       <ul>
         {contacts.map(el => {
-          return <Contact key={el.id} el={el} />;
+          return <Contact deleteFunc={deleteFunc} key={el.id} el={el} />;
         })}
       </ul>
     </div>
@@ -23,6 +23,7 @@ Contacts.propTypes = {
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  deleteFunc: PropTypes.func.isRequired
 };
 export default Contacts;

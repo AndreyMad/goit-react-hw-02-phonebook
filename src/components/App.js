@@ -30,6 +30,15 @@ class App extends Component {
     return filteredValue;
   };
 
+  deleteFunc = e => {
+    const idToDelete = e.target.closest("li").dataset.id;
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => {
+        return contact.id !== idToDelete;
+      })
+    }));
+  };
+
   handleSubmit = value => {
     const { contacts } = this.state;
     const testForSameUserName = contacts.find(
@@ -57,7 +66,10 @@ class App extends Component {
           resetForm={this.resetForm}
         />
         <Filter handleFilter={this.handleFilter} />
-        <Contacts contacts={filteredValue || contacts} />
+        <Contacts
+          deleteFunc={this.deleteFunc}
+          contacts={filteredValue || contacts}
+        />
       </>
     );
   }

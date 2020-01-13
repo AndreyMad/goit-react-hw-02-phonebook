@@ -2,12 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./Contacts.module.css";
 
-const Contact = ({ el }) => {
+const Contact = ({ el, deleteFunc }) => {
   return (
-    <li className={style.list_item}>
+    <li data-id={el.id} className={style.list_item}>
       <p>{el.name}</p>
       <p>{el.number}</p>
-      <input type="button" value="Delete" className={style.delete_button} />
+      <input
+        type="button"
+        onClick={deleteFunc}
+        value="Delete"
+        className={style.delete_button}
+      />
     </li>
   );
 };
@@ -16,6 +21,7 @@ Contact.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  deleteFunc: PropTypes.func.isRequired
 };
 export default Contact;
