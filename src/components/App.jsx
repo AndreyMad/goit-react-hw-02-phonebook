@@ -21,7 +21,7 @@ class App extends Component {
   };
 
   searchFunc = () => {
-    const { contacts, filter } = this.state;
+    // const { contacts, filter } = this.state;
     const filteredValue = contacts.filter(el => {
       return el.name.toLowerCase().includes(filter.toLowerCase());
     });
