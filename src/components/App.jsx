@@ -29,11 +29,10 @@ class App extends Component {
     return filteredValue;
   };
 
-  deleteFunc = e => {
-    const idToDelete = e.target.closest("li").dataset.id;
+  deleteFunc = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => {
-        return contact.id !== idToDelete;
+        return contact.id !== id;
       })
     }));
   };

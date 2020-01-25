@@ -8,7 +8,7 @@ const Contact = ({ el, deleteFunc }) => (
     <p>{el.number}</p>
     <input
       type="button"
-      onClick={deleteFunc}
+      onClick={() => deleteFunc(el.id)}
       value="Delete"
       className={style.delete_button}
     />
