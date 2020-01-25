@@ -26,9 +26,7 @@ class Phonebook extends Component {
   createContact = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    const exp = /^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/;
-    const isValidInputNumber = number.match(exp);
-    if (name.length > 0 && number.length > 0 && isValidInputNumber) {
+    if (name.length > 0 && number.length > 0) {
       const { handleSubmit } = this.props;
       handleSubmit(this.state);
       this.resetForm();
@@ -53,7 +51,7 @@ class Phonebook extends Component {
           Number
           <input
             value={number}
-            type="input"
+            type="Number"
             name="number"
             onChange={this.handleChangeState}
           />
