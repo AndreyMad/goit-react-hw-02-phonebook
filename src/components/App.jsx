@@ -17,13 +17,12 @@ class App extends Component {
 
   handleFilter = e => {
     this.setState({ filter: e.target.value });
-
-    this.searchFunc();
+    const { contacts, filter } = this.state;
+    this.searchFunc(contacts, filter);
   };
 
-  searchFunc = () => {
-    const { contacts, filter } = this.state;
-    const filteredValue = contacts.filter(el => {
+  searchFunc = (contactsArray, filter) => {
+    const filteredValue = contactsArray.filter(el => {
       return el.name.toLowerCase().includes(filter.toLowerCase());
     });
 
@@ -55,8 +54,8 @@ class App extends Component {
   };
 
   render() {
-    const { contacts } = this.state;
-    const filteredValue = this.searchFunc();
+    const { contacts, filter } = this.state;
+    const filteredValue = this.searchFunc(contacts, filter);
     return (
       <>
         <h1>Phonebook</h1>
