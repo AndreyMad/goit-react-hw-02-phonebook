@@ -17,6 +17,7 @@ class App extends Component {
 
   handleFilter = e => {
     this.setState({ filter: e.target.value });
+
     this.searchFunc();
   };
 

@@ -12,8 +12,8 @@ class Phonebook extends Component {
     handleSubmit: PropTypes.func.isRequired
   };
 
-  handleChangeState = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleChangeState = ({ target }) => {
+    this.setState({ [target.name]: target.value });
   };
 
   resetForm = () => {
@@ -26,7 +26,7 @@ class Phonebook extends Component {
   createContact = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    if (name.length > 0 && number.length > 0) {
+    if (name.length && number.length) {
       const { handleSubmit } = this.props;
       handleSubmit(this.state);
       this.resetForm();
